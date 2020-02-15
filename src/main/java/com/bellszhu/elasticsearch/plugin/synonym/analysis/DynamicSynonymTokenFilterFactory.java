@@ -164,6 +164,9 @@ public class DynamicSynonymTokenFilterFactory extends
             if (location.startsWith("http://") || location.startsWith("https://")) {
                 synonymFile = new RemoteSynonymFile(environment, analyzer, expand, format,
                         location);
+            } else if (location.startsWith("jdbc:mysql:")) {
+                synonymFile = new DBSynonymFile(environment, analyzer, expand, format,
+                        location);
             } else {
                 synonymFile = new LocalSynonymFile(environment, analyzer, expand, format,
                         location);
